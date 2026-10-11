@@ -23,6 +23,14 @@ Cada botão de WhatsApp envia um evento `whatsapp_click` para o `dataLayer` (com
 - Trocar `OAB/SC 123` pelo número real da OAB.
 - Trocar `https://estercoelho.akaistudio.com.br` pelo domínio final (canonical, og:image, sitemap.xml e robots.txt).
 
+## Cache (importante ao editar)
+
+CSS, JS, imagens e fontes ficam em cache por 1 ano no navegador.
+Ao alterar `style.css` ou `main.js`, aumente o número em `?v=` nas páginas
+(ex.: `style.css?v=3` → `style.css?v=4`). Imagens novas devem ter nome novo.
+
 ## Deploy (VPS)
 
-Arquivos em `/var/www/estercoelho`, servidos pelo Nginx.
+`/var/www/estercoelho` é um clone deste repositório, servido pelo Nginx:
+
+    cd /var/www/estercoelho && git pull
