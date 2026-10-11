@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://estercoelho.akaistudio.com.br/sitemap.xml
