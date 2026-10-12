@@ -218,7 +218,7 @@ body::after {
 .nav {
   position: fixed; top: 1rem; left: 50%; z-index: 40;
   transform: translateX(-50%);
-  width: min(1180px, calc(100% - 1.5rem));
+  width: var(--wrap);
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding: 0.55rem 0.55rem 0.55rem 1.4rem;
   border-radius: 999px;
@@ -359,10 +359,6 @@ body::after {
   -webkit-mask-image: radial-gradient(50% 50% at 50% 46%, #000 64%, transparent 100%);
   mask-image: radial-gradient(50% 50% at 50% 46%, #000 64%, transparent 100%);
 }
-.hero__portrait::after {
-  content: ""; position: absolute; left: 12%; right: 12%; bottom: 6%; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(232, 201, 122, 0.55), transparent);
-}
 
 /* entrada do topo só com movimento (sem esconder), para não atrasar a primeira exibição */
 @keyframes rise { from { transform: translateY(1.25rem); } }
@@ -370,7 +366,8 @@ body::after {
 
 /* faixa de temas */
 .ticker { background: var(--brand); overflow: hidden; padding-block: 1.3rem; }
-.ticker__track { display: flex; gap: 3rem; width: max-content; animation: ticker 60s linear infinite; }
+.ticker__track { display: flex; gap: 3rem; width: max-content; animation: ticker 120s linear infinite; }
+.ticker:hover .ticker__track { animation-play-state: paused; }
 .ticker__track span {
   font-family: var(--serif); font-style: italic; font-size: 1.35rem; color: var(--cream); white-space: nowrap;
   display: inline-flex; align-items: center; gap: 3rem;
@@ -581,6 +578,7 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .rise { animation: none; }
+  .ticker__track { animation: none !important; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; transition-delay: 0s !important; }
   .js .reveal { opacity: 1; transform: none; filter: none; }
 }
