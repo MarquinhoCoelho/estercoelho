@@ -56,6 +56,21 @@
     wa.classList.add("is-visible");
   }
 
+  // Quando o rodapé aparece, o botão sobe junto para não cobrir o conteúdo
+  var footer = document.querySelector(".footer");
+  if (wa && footer && "IntersectionObserver" in window) {
+    var steps = [];
+    for (var i = 0; i <= 50; i++) steps.push(i / 50);
+    new IntersectionObserver(function (entries) {
+      var e = entries[0];
+      var visible = e.isIntersecting ? Math.round(e.intersectionRect.height) : 0;
+      // se o rodapé ocupa quase a tela toda, não há onde o botão ficar: ele some (o rodapé já tem o WhatsApp)
+      var room = window.innerHeight - visible - wa.offsetHeight - 40;
+      wa.classList.toggle("is-docked", room < 0);
+      wa.style.setProperty("--lift", (room < 0 ? 0 : visible) + "px");
+    }, { threshold: steps }).observe(footer);
+  }
+
   // Ano no rodapé
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();

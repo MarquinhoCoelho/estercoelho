@@ -540,8 +540,9 @@ body::after {
   transform: translateY(150%); opacity: 0;
   transition: transform 0.8s var(--ease), opacity 0.6s var(--ease), background-color 0.4s var(--ease);
 }
-.wa-float.is-visible { transform: none; opacity: 1; }
+.wa-float.is-visible { transform: translateY(calc(-1 * var(--lift, 0px))); opacity: 1; transition: transform 0.25s var(--ease-out), opacity 0.6s var(--ease), background-color 0.4s var(--ease); }
 .wa-float:hover { background: var(--brand-deep); }
+.wa-float.is-docked { opacity: 0; pointer-events: none; }
 .wa-float__icon { width: 2.6rem; height: 2.6rem; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.14); }
 .wa-float__icon svg { width: 1.35rem; height: 1.35rem; }
 
